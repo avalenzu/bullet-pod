@@ -49,7 +49,7 @@ namespace gjkepa2_impl
 #define GJK_SIMPLEX4_EPS	((btScalar)0.0)
 
 	/* EPA	*/ 
-#define EPA_MAX_VERTICES	64
+#define EPA_MAX_VERTICES	128
 #define EPA_MAX_FACES		(EPA_MAX_VERTICES*2)
 #define EPA_MAX_ITERATIONS	255
 #define EPA_ACCURACY		((btScalar)1e-12)
