@@ -69,12 +69,6 @@ configure: $(UNZIP_DIR)/CMakeLists.txt
 		-DUSE_DOUBLE_PRECISION=on \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) ../$(UNZIP_DIR) 
 
-$(UNZIP_DIR)/CMakeLists.txt: bullet_gjk_accuracy_patch.diff
-	wget --no-check-certificate $(DL_LINK) && tar -xzf $(DL_NAME) && rm $(DL_NAME)
-	$(SED) -i -e 's@share/pkgconfig@lib/pkgconfig@g' $(UNZIP_DIR)/CMakeLists.txt
-	patch -p0 -i bullet_gjk_accuracy_patch.diff
-	mv $(UNZIP_DIR)/src/LinearMath/btScalar.h $(UNZIP_DIR)/src/LinearMath/btScalar.h.in
-	patch -p0 -i bullet_double_precision_patch.diff
 
 install_prereqs_homebrew :
 	brew install gnu-sed
