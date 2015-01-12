@@ -1,0 +1,30 @@
+--- bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp	2015-01-12 09:58:09.985884455 -0500
++++ bullet-2.81-rev2613/src/BulletCollision/NarrowPhaseCollision/btPersistentManifold.cpp	2015-01-12 11:00:34.945902629 -0500
+@@ -18,12 +18,12 @@
+ #include "LinearMath/btTransform.h"
+ 
+ 
+-btScalar					gContactBreakingThreshold = btScalar(0.02);
++btScalar					gContactBreakingThreshold = btScalar(0.1);
+ ContactDestroyedCallback	gContactDestroyedCallback = 0;
+ ContactProcessedCallback	gContactProcessedCallback = 0;
+ ///gContactCalcArea3Points will approximate the convex hull area using 3 points
+ ///when setting it to false, it will use 4 points to compute the area: it is more accurate but slower
+-bool						gContactCalcArea3Points = true;
++bool						gContactCalcArea3Points = false;
+ 
+ 
+ btPersistentManifold::btPersistentManifold()
+--- bullet-2.81-rev2613/src/BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.cpp	2015-01-12 10:00:03.121885004 -0500
++++ bullet-2.81-rev2613/src/BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.cpp	2015-01-12 11:05:28.433904053 -0500
+@@ -181,8 +181,8 @@
+ 
+ btConvexConvexAlgorithm::CreateFunc::CreateFunc(btSimplexSolverInterface*			simplexSolver, btConvexPenetrationDepthSolver* pdSolver)
+ {
+-	m_numPerturbationIterations = 0;
+-	m_minimumPointsPerturbationThreshold = 3;
++	m_numPerturbationIterations = 10;
++	m_minimumPointsPerturbationThreshold = 5;
+ 	m_simplexSolver = simplexSolver;
+ 	m_pdSolver = pdSolver;
+ }
